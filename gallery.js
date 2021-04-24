@@ -37,6 +37,7 @@ function onPictureGalleryClick(event){
 
 function onCloseModalBtnClick(e){
     openModal.classList.remove('is-open')
+    pictureModal.src = '';
 }
 
 const r = document.querySelector('.gallery__image')
