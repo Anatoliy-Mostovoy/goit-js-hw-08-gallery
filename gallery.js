@@ -12,14 +12,14 @@ galleryContainer.addEventListener('click', onPictureGalleryClick);
 closeModal.addEventListener('click', onCloseModalBtnClick)
 
 function createGallery (images){
-    return images.map(image=>{
+    return images.map(({preview, original, description})=>{
         return   `
         <li class="gallery__item">
         <img
           class="gallery__image"
-          src="${image.preview}"
-          data-source="${image.original}"
-          alt="${image.description}"
+          src="${preview}"
+          data-source="${original}"
+          alt="${description}"
         />
     </li>
         `
@@ -40,6 +40,9 @@ function onCloseModalBtnClick(e){
     pictureModal.src = '';
 }
 
-const r = document.querySelector('.gallery__image')
-console.log(r.dataset)
 
+const overlay = document.querySelector('.lightbox__overlay')
+overlay.addEventListener('click', onOverlayClick);
+function onOverlayClick(event){
+    openModal.classList.remove('is-open')
+}
