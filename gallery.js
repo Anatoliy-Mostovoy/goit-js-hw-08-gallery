@@ -32,22 +32,23 @@ function onPictureGalleryClick(event){
         return
     }
     openModal.classList.add('is-open');
-    pictureModal.src = `${event.target.dataset.source}`;
+    pictureModal.src = event.target.dataset.source;
     window.addEventListener('keydown', onEscOverlayPres);
+    window.addEventListener('keydown', onBtnArrowClick);
+    
+   
 }
 
 function onCloseModalBtnClick(e){
     window.removeEventListener('keydown', onEscOverlayPres);
+    window.removeEventListener('keydown', onBtnArrowClick);
     openModal.classList.remove('is-open')
     pictureModal.src = '';
 }
 
 
 const overlay = document.querySelector('.lightbox__overlay')
-overlay.addEventListener('click', onOverlayClick);
-function onOverlayClick(event){
-    openModal.classList.remove('is-open')
-}
+overlay.addEventListener('click', onCloseModalBtnClick);
 
 function onEscOverlayPres(event){
         console.log(event) 
@@ -55,3 +56,15 @@ function onEscOverlayPres(event){
             onCloseModalBtnClick();
         }
 }
+
+function onBtnArrowClick(event){
+    if(event.code=== 'ArrowRight'){
+        console.log('Нажал вправо')
+    }
+    if(event.code=== 'ArrowLeft'){
+        console.log('Нажал влево')
+    }
+    
+}
+// ArrowLeft
+// ArrowRight
