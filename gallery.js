@@ -33,9 +33,11 @@ function onPictureGalleryClick(event){
     }
     openModal.classList.add('is-open');
     pictureModal.src = `${event.target.dataset.source}`;
+    window.addEventListener('keydown', onEscOverlayPres);
 }
 
 function onCloseModalBtnClick(e){
+    window.removeEventListener('keydown', onEscOverlayPres);
     openModal.classList.remove('is-open')
     pictureModal.src = '';
 }
@@ -45,4 +47,11 @@ const overlay = document.querySelector('.lightbox__overlay')
 overlay.addEventListener('click', onOverlayClick);
 function onOverlayClick(event){
     openModal.classList.remove('is-open')
+}
+
+function onEscOverlayPres(event){
+        console.log(event) 
+        if(event.code === 'Escape'){
+            onCloseModalBtnClick();
+        }
 }
